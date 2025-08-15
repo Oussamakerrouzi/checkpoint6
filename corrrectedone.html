@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pricing {
+      max-width: 320px;
+      width: 100%;
+      margin: 15px;
+      background-color: #fff;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .pricing:hover {
+      transform: translateY(-5px);
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+      margin: 10px 0;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+    }
+
+    .features li {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .btn {
+      background: blue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: darkblue;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card container -->
+  <div id="cards-container"></div>
+
+  <script>
+    function createCard(title, price, features) {
+      const card = document.createElement("div");
+      card.className = "pricing";
+
+      const titleEl = document.createElement("h2");
+      titleEl.className = "title";
+      titleEl.textContent = title;
+
+      const priceEl = document.createElement("p");
+      priceEl.className = "price";
+      priceEl.textContent = price;
+
+      const ul = document.createElement("ul");
+      ul.className = "features";
+      features.forEach(f => {
+        const li = document.createElement("li");
+        li.textContent = f;
+        ul.appendChild(li);
+      });
+
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = "Start Trial";
+      btn.onclick = () => alert(`Starting trial for ${title}`);
+
+      card.appendChild(titleEl);
+      card.appendChild(priceEl);
+      card.appendChild(ul);
+      card.appendChild(btn);
+
+      return card;
+    }
+
+    // Example usage:
+    const container = document.getElementById("cards-container");
+    container.appendChild(createCard("Basic Plan", "$9.99 / month", ["1 GB Storage", "Basic Support", "All Core Features"]));
+    container.appendChild(createCard("Pro Plan", "$19.99 / month", ["10 GB Storage", "Priority Support", "Advanced Features"]));
+  </script>
+
+</body>
+</html>
